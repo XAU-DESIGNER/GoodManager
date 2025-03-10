@@ -1,0 +1,140 @@
+﻿@using GoodManager.Domain.DTOs.ViewModels.LangCenter.Words
+@model FilterWordsViewModel
+
+@{
+    ViewData["Title"] = "فیلتر کلمات";
+}
+
+@section BreadCrumb {
+    <div class="flex items-center space-x-4 space-x-reverse py-5 lg:py-6">
+        <h2 class="text-xl font-medium text-slate-800 dark:text-navy-50 lg:text-2xl">
+            Good manager
+        </h2>
+        <div class="hidden h-full py-1 sm:flex">
+            <div class="h-full w-px bg-slate-300 dark:bg-navy-600"></div>
+        </div>
+        <ul class="hidden flex-wrap items-center space-x-2 space-x-reverse sm:flex">
+            <li class="flex items-center space-x-2 space-x-reverse">
+                <a class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent"
+                   href="javascript:void(0)">مرکز زبان</a>
+                <svg x-ignore xmlns="http://www.w3.org/2000/svg"
+                     class="size-4" fill="none" viewBox="0 0 24 24"
+                     stroke="currentColor">
+                    <path stroke-linecap="round"
+                          stroke-linejoin="round" stroke-width="2"
+                          d="M15 19l-7-7 7-7"></path>
+                </svg>
+            </li>
+
+            <li class="flex items-center space-x-2 space-x-reverse">
+                <a class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent"
+                   href="javascript:void(0)">کلمات</a>
+                <svg x-ignore xmlns="http://www.w3.org/2000/svg"
+                     class="size-4" fill="none" viewBox="0 0 24 24"
+                     stroke="currentColor">
+                    <path stroke-linecap="round"
+                          stroke-linejoin="round" stroke-width="2"
+                          d="M15 19l-7-7 7-7"></path>
+                </svg>
+            </li>
+            <li>فیلتـر</li>
+        </ul>
+    </div>
+}
+
+<div class="mt-4 grid grid-cols-1 gap-4 sm:mt-5 sm:gap-5 lg:mt-6 lg:gap-6">
+    <div x-data="{isFilterExpanded:false}">
+        <div class="flex items-center justify-between">
+            <h2 class="text-base font-medium tracking-wide text-slate-700 line-clamp-1 dark:text-navy-100">
+                فیلتر کلمات
+            </h2>
+            <div class="flex">
+                <button @@click="isFilterExpanded = !isFilterExpanded"
+                        class="btn size-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         class="size-4.5" fill="none"
+                         viewBox="0 0 24 24">
+                        <path stroke="currentColor"
+                              stroke-linecap="round"
+                              stroke-width="2"
+                              d="M18 11.5H6M21 4H3m6 15h6"></path>
+                    </svg>
+                </button>
+                <a showModalBySwal asp-action="Create" asp-controller="Word"
+                   class="btn size-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+                    <i class="fas fa-plus"></i>
+                </a>
+            </div>
+        </div>
+        <div x-show="isFilterExpanded" x-collapse
+             style="height: 0px; overflow: hidden; display: none;"
+             hidden>
+
+            <form id="filter-search" asp-action="ListPartial" asp-controller="Word" data-replace="#filter-table" method="post" ajax-filter-form>
+                <input type="hidden" asp-for="CurrentPage" id="CurrentPage" />
+                <div class="max-w-100 py-3">
+                    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:gap-6">
+                        <label class="block">
+                            <div class="relative mt-1.5 flex">
+                                <input class="form-input peer w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 pr-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                       placeholder-for="Title"
+                                       asp-for="Title"
+                                       type="text">
+                                <span class="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                         class="size-4.5 transition-colors duration-200"
+                                         fill="none"
+                                         viewBox="0 0 24 24">
+                                        <path stroke="currentColor"
+                                              stroke-width="1.5"
+                                              d="M5 19.111c0-2.413 1.697-4.468 4.004-4.848l.208-.035a17.134 17.134 0 015.576 0l.208.035c2.307.38 4.004 2.435 4.004 4.848C19 20.154 18.181 21 17.172 21H6.828C5.818 21 5 20.154 5 19.111zM16.083 6.938c0 2.174-1.828 3.937-4.083 3.937S7.917 9.112 7.917 6.937C7.917 4.764 9.745 3 12 3s4.083 1.763 4.083 3.938z"></path>
+                                    </svg>
+                                </span>
+                            </div>
+                        </label>
+
+                        <!-- <div class="sm:col-span-2">
+                          <span>Project Status:</span>
+                          <div class="mt-2 grid grid-cols-1 gap-4 sm:grid-cols-4 sm:gap-5 lg:gap-6">
+                            <label class="inline-flex items-center space-x-2 space-x-reverse">
+                              <input class="form-checkbox is-basic size-5 rounded border-slate-400/70 checked:border-secondary checked:bg-secondary hover:border-secondary focus:border-secondary dark:border-navy-400 dark:checked:border-secondary-light dark:checked:bg-secondary-light dark:hover:border-secondary-light dark:focus:border-secondary-light" type="checkbox">
+                              <span>Upcoming</span>
+                            </label>
+                            <label class="inline-flex items-center space-x-2 space-x-reverse">
+                              <input class="form-checkbox is-basic size-5 rounded border-slate-400/70 checked:border-primary checked:bg-primary hover:border-primary focus:border-primary dark:border-navy-400 dark:checked:border-accent dark:checked:bg-accent dark:hover:border-accent dark:focus:border-accent" type="checkbox">
+                              <span>In Progress</span>
+                            </label>
+                            <label class="inline-flex items-center space-x-2 space-x-reverse">
+                              <input checked="" class="form-checkbox is-basic size-5 rounded border-slate-400/70 checked:!border-success checked:bg-success hover:!border-success focus:!border-success dark:border-navy-400" type="checkbox">
+                              <span>Complete</span>
+                            </label>
+                            <label class="inline-flex items-center space-x-2 space-x-reverse">
+                              <input checked="" class="form-checkbox is-basic size-5 rounded border-slate-400/70 checked:!border-error checked:bg-error hover:!border-error focus:!border-error dark:border-navy-400" type="checkbox">
+                              <span>Cancelled</span>
+                            </label>
+                          </div>
+                        </div> -->
+                    </div>
+                    <div class="mt-4 space-x-1 space-x-reverse text-left">
+                        <button type="button" @@click="isFilterExpanded = ! isFilterExpanded"
+                                class="btn font-medium text-slate-700 hover:bg-slate-300/20 active:bg-slate-300/25 dark:text-navy-100 dark:hover:bg-navy-300/20 dark:active:bg-navy-300/25">
+                            بستن
+                        </button>
+
+                        <button type="reset" class="btn font-medium text-slate-700 hover:bg-slate-300/20 active:bg-slate-300/25 dark:text-navy-100 dark:hover:bg-navy-300/20 dark:active:bg-navy-300/25">
+                            پاک کردن
+                        </button>
+
+                        <button type="submit" @@click="isFilterExpanded = ! isFilterExpanded"
+                                class="btn bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
+                            فیلتـر
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div id="filter-table" class="card mt-3">
+            <partial name="ListPartial" model="@Model" />
+        </div>
+    </div>
+</div>

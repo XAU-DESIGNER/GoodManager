@@ -1,0 +1,16 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/ConsoleApp1
+/.vs
+/GoodManager/.vs
+/GoodManager/GoodManager.Application/bin/Debug/net8.0
+/GoodManager/GoodManager.Application/obj
+/GoodManager/GoodManager.Domain/bin/Debug/net8.0
+/GoodManager/GoodManager.Domain/obj
+/GoodManager/GoodManager.Infrastructure/bin/Debug/net8.0
+/GoodManager/GoodManager.Infrastructure/Migrations
+/GoodManager/GoodManager.Infrastructure/obj
+/GoodManager/GoodManager.Web/bin/Debug/net8.0
+/GoodManager/GoodManager.Web/obj

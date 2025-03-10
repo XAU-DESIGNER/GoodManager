@@ -1,0 +1,91 @@
+﻿@using GoodManager.Domain.Common.Filter
+@model PagingViewModel
+
+
+@if (Model.EndPage > 1)
+{
+    <div class="flex flex-col justify-between space-y-4 px-4 py-4 sm:flex-row sm:items-center sm:space-y-0 sm:px-5">
+        <div class="text-xs+"></div>
+
+        <ol class="pagination space-x-1.5 space-x-reverse">
+            @if (Model.StartPage < Model.Page)
+            {
+                if (!string.IsNullOrWhiteSpace(Model.FormId))
+                {
+                    @* <li class="page-item prev"> *@
+                    @*     <a class="page-link cursor-pointer" onclick="FillPageIdByFromId(@(Model.Page -1) , '@Model.FormId')"> *@
+                    @*         <i class="tf-icon bx bx-chevrons-left"></i> *@
+                    @*     </a> *@
+                    @* </li> *@
+
+                    <li>
+                        <a href="javascript:void(0)" onclick="FillPageId(@(Model.Page -1), '@Model.FormId')"
+                           class="flex size-8 items-center justify-center rounded-full bg-slate-150 text-slate-500 transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:bg-navy-500 dark:text-navy-200 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                 class="size-4" fill="none"
+                                 viewBox="0 0 24 24"
+                                 stroke="currentColor"
+                                 stroke-width="2">
+                                <path stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+                    </li>
+
+                }
+                else
+                {
+                    <li>
+                        <a href="javascript:void(0)" onclick="FillPageId(@(Model.Page -1))"
+                           class="flex size-8 items-center justify-center rounded-full bg-slate-150 text-slate-500 transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:bg-navy-500 dark:text-navy-200 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                 class="size-4" fill="none"
+                                 viewBox="0 0 24 24"
+                                 stroke="currentColor"
+                                 stroke-width="2">
+                                <path stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+                    </li>
+                }
+            }
+            @for (int i = Model.StartPage; i <= Model.EndPage; i++)
+            {
+                if (Model.Page == i)
+                {
+                    <li>
+                        <a href="javascript:void(0)"
+                           class="flex h-8 min-w-[2rem] items-center justify-center rounded-full bg-primary px-3 leading-tight text-white transition-colors hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">@i</a>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <a href="javascript:void(0)" onclick="FillPageId(@i)"
+                           class="flex h-8 min-w-[2rem] items-center justify-center rounded-full bg-slate-150 px-3 leading-tight transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:bg-navy-500 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">@i</a>
+                    </li>
+                }
+            }
+            @if (Model.EndPage > Model.Page)
+            {
+                <li>
+                    <a href="javascript:void(0)" onclick="FillPageId(@(Model.Page +1))"
+                       class="flex size-8 items-center justify-center rounded-full bg-slate-150 text-slate-500 transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:bg-navy-500 dark:text-navy-200 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                             class="size-4" fill="none"
+                             viewBox="0 0 24 24"
+                             stroke="currentColor">
+                            <path stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                    </a>
+                </li>
+            }
+        </ol>
+    </div>
+}

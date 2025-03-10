@@ -1,0 +1,43 @@
+﻿@using GoodManager.Domain.Common.Filter
+@model PagingViewModel
+
+@if (Model.EndPage > 1)
+{
+    <div dir="ltr" class="main-p-pagination">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                @if (Model.StartPage < Model.Page)
+                {
+                    <li class="page-item">
+                        <a href="javascript:void(0)" class="page-link" onclick="FillPageId(@(Model.Page -1))" aria-label="قبلی">
+                            قبلی
+                        </a>
+                    </li>
+                }
+                @for (int i = Model.StartPage; i <= Model.EndPage; i++)
+                {
+                    if (Model.Page == i)
+                    {
+                        <li class="page-item">
+                            <a href="javascript:void(0)" class="page-link active" data-page="0">@i</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="page-item">
+                                        <a href="javascript:void(0)" class="page-link" onclick="FillPageId(@i)">@i</a>
+                        </li>
+                    }
+                }
+                @if (Model.EndPage > Model.Page)
+                {
+                    <li class="page-item">
+                                <a href="javascript:void(0)" class="page-link" onclick="FillPageId(@(Model.Page +1))" aria-label="بعدی">
+                            بعدی
+                        </a>
+                    </li>
+                }
+            </ul>
+        </nav>
+    </div>
+}

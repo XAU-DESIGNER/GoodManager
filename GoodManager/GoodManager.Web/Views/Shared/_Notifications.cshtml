@@ -1,0 +1,25 @@
+﻿@if (TempData["SuccessMessageToast"] != null)
+{
+    <script>
+        swal.fire({
+            showConfirmButton: false,
+            toast:true,
+            icon: "success",
+            position:"bottom-end",
+            title: '@TempData["SuccessMessageToast"]'
+        });
+    </script>
+}
+
+@if (TempData["ErrorMessageToast"] != null)
+{
+    <script>
+         swal.fire({
+            showConfirmButton: false,
+            toast:true,
+            position:"bottom-end",
+            icon: "error",
+            title: '@TempData["ErrorMessageToast"]'
+        });
+    </script>
+}

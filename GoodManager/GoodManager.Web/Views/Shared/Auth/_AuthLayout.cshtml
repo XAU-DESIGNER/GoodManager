@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <!-- Meta tags  -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+
+    <title>کدجویان - احراز هویت | @ViewData["Title"]</title>
+    <link rel="icon" type="image/png" href="theme/images/favicon.png" />
+
+    <partial name="Auth/_AuthHeaderReferencesPartial" />
+    @await RenderSectionAsync(name: "HeaderReferences", required: false)
+</head>
+<body x-data class="is-header-blur" x-bind="$store.global.documentBody">
+    <!-- App preloader-->
+    <div class="app-preloader fixed z-50 grid h-full w-full place-content-center bg-slate-50 dark:bg-navy-900">
+        <div class="app-preloader-inner relative inline-block size-48"></div>
+    </div>
+
+    <!-- Page Wrapper -->
+    <div id="root"
+         class="min-h-100vh flex grow bg-slate-50 dark:bg-navy-900"
+         x-cloak>
+        <main class="grid w-full grow grid-cols-1 place-items-center">
+            <div class="w-full max-w-[26rem] p-4 sm:px-5">
+                @RenderBody()
+            </div>
+        </main>
+    </div>
+
+    <partial name="Auth/_AuthFooterReferencesPartial" />
+    <partial name="_Notifications" />
+    @await RenderSectionAsync(name: "FooterReferences", required: false)
+</body>
+</html>
