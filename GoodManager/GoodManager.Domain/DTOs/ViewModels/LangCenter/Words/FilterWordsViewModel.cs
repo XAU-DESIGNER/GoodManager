@@ -2,6 +2,7 @@
 using GoodManager.Domain.Common;
 using GoodManager.Domain.Common.Filter;
 using GoodManager.Domain.Enums.Common;
+using GoodManager.Domain.Enums.LangCenter;
 using System.ComponentModel.DataAnnotations;
 
 namespace GoodManager.Domain.DTOs.ViewModels.LangCenter.Words;
@@ -13,5 +14,8 @@ public class FilterWordsViewModel : BasePaging<WordDetailsForFilterViewModel>
     public string? Title { get; set; }
 
     [Display(Name = "وضعیت حذف"), FilterInput]
-    public DeleteStatus IsDeleteStatus { get; set; }
+    public DeleteStatus DeleteStatus { get; set; }
+
+    [Display(Name = "نوع کلمه")]
+    public WordType WordType { get; set; }
 }

@@ -8,8 +8,6 @@ using GoodManager.Domain.Interfaces.LangCenter;
 using GoodManager.Domain.Models.LangCenter;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection.Metadata.Ecma335;
-using System.Runtime.CompilerServices;
 
 namespace GoodManager.Application.Services.Implementation.LangCenter;
 
@@ -28,7 +26,7 @@ public class WordService(IWordRepository wordRepository) : IWordService
             conditions.Add(x => EF.Functions.Like(x.Title, $"%{filter.Title}%"));
         }
 
-        switch (filter.IsDeleteStatus)
+        switch (filter.DeleteStatus)
         {
             case DeleteStatus.All:
                 conditions.Add(x => x.IsDeleted || !x.IsDeleted);
@@ -87,11 +85,11 @@ public class WordService(IWordRepository wordRepository) : IWordService
     public async Task<Result> UpdateAsync(UpdateWordViewModel model)
     {
         var objectFromDataBase = await wordRepository.GetByIdAsync(model.Id);
-        
+
         #region Validations
 
         if (objectFromDataBase == null) return Result.Failure(ErrorMessages.OperationFailedError);
-        
+
         model.Title = model.Title?.SanitizeTextAndTrim();
         model.Meaning = model.Meaning?.SanitizeTextAndTrim();
 

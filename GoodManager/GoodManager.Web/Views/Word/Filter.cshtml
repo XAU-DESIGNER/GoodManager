@@ -1,4 +1,6 @@
 ﻿@using GoodManager.Domain.DTOs.ViewModels.LangCenter.Words
+@using GoodManager.Domain.Enums.Common
+@using GoodManager.Domain.Enums.LangCenter
 @model FilterWordsViewModel
 
 @{
@@ -73,25 +75,31 @@
             <form id="filter-search" asp-action="ListPartial" asp-controller="Word" data-replace="#filter-table" method="post" ajax-filter-form>
                 <input type="hidden" asp-for="CurrentPage" id="CurrentPage" />
                 <div class="max-w-100 py-3">
-                    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:gap-6">
+                    <div class="grid grid-cols-1 gap-4 sm:grid-cols-4 sm:gap-5 lg:gap-6">
                         <label class="block">
+                            <label asp-for="Title"></label>
+
                             <div class="relative mt-1.5 flex">
                                 <input class="form-input peer w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 pr-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                                        placeholder-for="Title"
                                        asp-for="Title"
                                        type="text">
                                 <span class="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
-                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                         class="size-4.5 transition-colors duration-200"
-                                         fill="none"
-                                         viewBox="0 0 24 24">
-                                        <path stroke="currentColor"
-                                              stroke-width="1.5"
-                                              d="M5 19.111c0-2.413 1.697-4.468 4.004-4.848l.208-.035a17.134 17.134 0 015.576 0l.208.035c2.307.38 4.004 2.435 4.004 4.848C19 20.154 18.181 21 17.172 21H6.828C5.818 21 5 20.154 5 19.111zM16.083 6.938c0 2.174-1.828 3.937-4.083 3.937S7.917 9.112 7.917 6.937C7.917 4.764 9.745 3 12 3s4.083 1.763 4.083 3.938z"></path>
-                                    </svg>
+                                    <i class="fas fa-pen"></i>
                                 </span>
                             </div>
                         </label>
+                        <label class="block">
+                            <label asp-for="DeleteStatus"></label>
+                            <select asp-items="Html.GetEnumSelectList<DeleteStatus>()" name="WordType" class="form-select mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent">
+                            </select>
+                        </label>
+                        <label class="block">
+                            <label asp-for="WordType"></label>
+                            <select asp-items="Html.GetEnumSelectList<WordType>()" name="WordType" class="form-select mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent">
+                            </select>
+                        </label>
+
 
                         <!-- <div class="sm:col-span-2">
                           <span>Project Status:</span>
