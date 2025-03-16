@@ -1,4 +1,5 @@
-﻿using GoodManager.Domain.Models.LangCenter;
+﻿using GoodManager.Domain.Models.Accounting;
+using GoodManager.Domain.Models.LangCenter;
 using GoodManager.Domain.Models.Users;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,7 +12,20 @@ public class GoodManagerDbContext(DbContextOptions<GoodManagerDbContext> options
     #region Users
 
     public DbSet<User> Users { get; set; }
+
+    #endregion
+
+    #region Lang center
+
     public DbSet<Word> Words { get; set; }
+
+    #endregion
+
+    #region Accounting
+
+    public DbSet<AccountingWallet> AccountingWallets { get; set; }
+    public DbSet<Income> Incomes{ get; set; }
+    public DbSet<Cost> Costs { get; set; }
 
     #endregion
 
