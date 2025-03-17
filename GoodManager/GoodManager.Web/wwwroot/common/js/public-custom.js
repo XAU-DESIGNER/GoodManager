@@ -1,7 +1,6 @@
 ﻿"use strict";
 
 $(async function () {
-
     $('[ajax-filter-form]').on('submit', async function (e) {
         e.preventDefault();
 
@@ -27,19 +26,18 @@ $(async function () {
                 await console.log(message);
             }
         });
-    });
+    })
 
     $('[editForm] input').on('input', function () {
         $('.formBtns').fadeIn();
-    });
+    })
 
     $('[editForm]').on('reset', function (e) {
         $('.formBtns').hide();
-    });
+    })
 });
 
 // list actions btns
-
 $(document).on('click', '[showModalBySwal]', async function (e) {
     e.preventDefault();
     const url = $(this).attr('href');
@@ -133,7 +131,7 @@ $(document).on('submit', '[addForm]', async function (e) {
             await Swal.showValidationMessage(result.responseText);
         }
     });
-});
+})
 
 $(document).on('submit', '[editForm]', async function (e) {
     e.preventDefault();
@@ -186,7 +184,7 @@ $(document).on('submit', '[editForm]', async function (e) {
 
 $(document).on('reset', '[addForm]', async function (e) {
     $('.formBtns').hide();
-});
+})
 
 $(document).on('input', '[addForm] input', async function (e) {
     $('.formBtns').fadeIn();
@@ -255,7 +253,7 @@ async function replaceHtmlContentWithSelector(selector, htmlContent) {
 
     if (htmlContent)
         element.html(htmlContent);
-};
+}
 
 async function displayLoading(selector, effect = 'bounce') {
     let element = $(selector);

@@ -1,10 +1,11 @@
-﻿@using GoodManager.Domain.DTOs.ViewModels.LangCenter.Words
+﻿@using GoodManager.Domain.DTOs.ViewModels.Accounting.Costs
+@using GoodManager.Domain.DTOs.ViewModels.LangCenter.Words
 @using GoodManager.Domain.Enums.Common
 @using GoodManager.Domain.Enums.LangCenter
-@model FilterWordsViewModel
+@model FilterCostsViewModel
 
 @{
-    ViewData["Title"] = "فیلتر کلمات";
+    ViewData["Title"] = "فیلتر هزینه ها";
 }
 
 @section BreadCrumb {
@@ -18,7 +19,7 @@
         <ul class="hidden flex-wrap items-center space-x-2 space-x-reverse sm:flex">
             <li class="flex items-center space-x-2 space-x-reverse">
                 <a class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent"
-                   href="javascript:void(0)">مرکز زبان</a>
+                   href="javascript:void(0)">مالی و حسابداری</a>
                 <svg x-ignore xmlns="http://www.w3.org/2000/svg"
                      class="size-4" fill="none" viewBox="0 0 24 24"
                      stroke="currentColor">
@@ -30,7 +31,7 @@
 
             <li class="flex items-center space-x-2 space-x-reverse">
                 <a class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent"
-                   href="javascript:void(0)">کلمات</a>
+                   href="javascript:void(0)">هـزینه ها</a>
                 <svg x-ignore xmlns="http://www.w3.org/2000/svg"
                      class="size-4" fill="none" viewBox="0 0 24 24"
                      stroke="currentColor">
@@ -48,7 +49,7 @@
     <div x-data="{isFilterExpanded:false}">
         <div class="flex items-center justify-between">
             <h2 class="text-base font-medium tracking-wide text-slate-700 line-clamp-1 dark:text-navy-100">
-                فیلتر کلمات
+                فیلتر هزینه ها
             </h2>
             <div class="flex">
                 <button @@click="isFilterExpanded = !isFilterExpanded"
@@ -62,7 +63,7 @@
                               d="M18 11.5H6M21 4H3m6 15h6"></path>
                     </svg>
                 </button>
-                <a showModalBySwal asp-action="Create" asp-controller="Word"
+                <a showModalBySwal asp-action="Create" asp-controller="Cost"
                    class="btn size-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
                     <i class="fas fa-plus"></i>
                 </a>
@@ -72,33 +73,33 @@
              style="height: 0px; overflow: hidden; display: none;"
              hidden>
 
-            <form id="filter-search" asp-action="ListPartial" asp-controller="Word" data-replace="#filter-table" method="post" ajax-filter-form>
+            <form id="filter-search" asp-action="ListPartial" asp-controller="Cost" data-replace="#filter-table" method="post" ajax-filter-form>
                 <input type="hidden" asp-for="CurrentPage" id="CurrentPage" />
                 <div class="max-w-100 py-3">
                     <div class="grid grid-cols-1 gap-4 sm:grid-cols-4 sm:gap-5 lg:gap-6">
-                        <label class="block">
-                            <label asp-for="Title"></label>
+                        @* <label class="block"> *@
+                        @*     <label asp-for="Title"></label> *@
 
-                            <div class="relative mt-1.5 flex">
-                                <input class="form-input peer w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 pr-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                       placeholder-for="Title"
-                                       asp-for="Title"
-                                       type="text">
-                                <span class="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
-                                    <i class="fas fa-pen"></i>
-                                </span>
-                            </div>
-                        </label>
-                        <label class="block">
-                            <label asp-for="DeleteStatus"></label>
-                            <select asp-items="Html.GetEnumSelectList<DeleteStatus>()" name="WordType" class="form-select mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent">
-                            </select>
-                        </label>
-                        <label class="block">
-                            <label asp-for="WordType"></label>
-                            <select asp-items="Html.GetEnumSelectList<WordType>()" name="WordType" class="form-select mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent">
-                            </select>
-                        </label>
+                        @*     <div class="relative mt-1.5 flex"> *@
+                        @*         <input class="form-input peer w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 pr-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent" *@
+                        @*                placeholder-for="Title" *@
+                        @*                asp-for="Title" *@
+                        @*                type="text"> *@
+                        @*         <span class="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent"> *@
+                        @*             <i class="fas fa-pen"></i> *@
+                        @*         </span> *@
+                        @*     </div> *@
+                        @* </label> *@
+                        @* <label class="block"> *@
+                        @*     <label asp-for="DeleteStatus"></label> *@
+                        @*     <select asp-items="Html.GetEnumSelectList<DeleteStatus>()" name="WordType" class="form-select mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent"> *@
+                        @*     </select> *@
+                        @* </label> *@
+                        @* <label class="block"> *@
+                        @*     <label asp-for="WordType"></label> *@
+                        @*     <select asp-items="Html.GetEnumSelectList<WordType>()" name="WordType" class="form-select mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent"> *@
+                        @*     </select> *@
+                        @* </label> *@
 
 
                         <!-- <div class="sm:col-span-2">
@@ -129,9 +130,9 @@
                             بستن
                         </button>
 
-                        <button type="reset" class="btn font-medium text-slate-700 hover:bg-slate-300/20 active:bg-slate-300/25 dark:text-navy-100 dark:hover:bg-navy-300/20 dark:active:bg-navy-300/25">
-                            پاک کردن
-                        </button>
+                        @* <button type="reset" class="btn font-medium text-slate-700 hover:bg-slate-300/20 active:bg-slate-300/25 dark:text-navy-100 dark:hover:bg-navy-300/20 dark:active:bg-navy-300/25"> *@
+                        @*     پاک کردن *@
+                        @* </button> *@
 
                         <button type="submit" @@click="isFilterExpanded = ! isFilterExpanded"
                                 class="btn bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">

@@ -1,6 +1,4 @@
-﻿using AngleSharp.Css.Values;
-using GoodManager.Application.Services.Implementation.LangCenter;
-using GoodManager.Application.Services.Interfaces.LangCenter;
+﻿using GoodManager.Application.Services.Interfaces.LangCenter;
 using GoodManager.Domain.Common;
 using GoodManager.Domain.DTOs.ViewModels.LangCenter.Words;
 using Microsoft.AspNetCore.Mvc;
