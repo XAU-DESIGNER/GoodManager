@@ -5,12 +5,12 @@ namespace GoodManager.Application.Extensions;
 
 public static class UserExtension
 {
-    public static string GetUserName(this ClaimsPrincipal claims)
-    {
-        if (claims is null || !(claims.Identity?.IsAuthenticated ?? false)) return string.Empty;
+    //public static string GetUserName(this ClaimsPrincipal claims)
+    //{
+    //    if (claims is null || !(claims.Identity?.IsAuthenticated ?? false)) return string.Empty;
 
-        return claims.FindFirst(CustomClaimTypes.UserName)?.Value ?? string.Empty;
-    }
+    //    return claims.FindFirst(CustomClaimTypes.UserName)?.Value ?? string.Empty;
+    //}
 
     public static string GetUserEmail(this ClaimsPrincipal claims)
     {

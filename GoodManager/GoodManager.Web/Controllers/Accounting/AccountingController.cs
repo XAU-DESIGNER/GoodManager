@@ -20,7 +20,7 @@ public class AccountingController : SiteBaseController
         return View();
     }
 
-    public async Task<IActionResult> UserIncomeAndExpenses()
+    public IActionResult UserIncomeAndExpenses()
     {
         return Ok();
     }

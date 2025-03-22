@@ -1,6 +1,6 @@
 ﻿namespace GoodManager.Domain.Enums.Accounting;
 
-public enum CostTypes
+public enum TransactionCause
 {
     Learn,
     Transportation,
@@ -10,11 +10,15 @@ public enum CostTypes
     Others
 }
 
-public enum CostPriority
+public enum TransactionWay
 {
-    VeryHigh,
-    High,
-    Medium,
-    Low,
-    VeryLow
+    Cryptocurrency,
+    Bank,
+    Cash
+}
+
+public enum TransactionType
+{
+    Deposit,
+    Windrow
 }

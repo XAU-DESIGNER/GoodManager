@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace GoodManager.Infrastructure.Persistence.Configurations.Accounting;
 
-public class IncomeConfig : IEntityTypeConfiguration<Income>
+public class AccountingTransactionConfig : IEntityTypeConfiguration<AccountingTransaction>
 {
-    public void Configure(EntityTypeBuilder<Income> builder)
+    public void Configure(EntityTypeBuilder<AccountingTransaction> builder)
     {
         builder.HasKey(x => x.Id);
 
@@ -18,8 +18,10 @@ public class IncomeConfig : IEntityTypeConfiguration<Income>
 
         #region Relations
 
-        builder.HasOne(x => x.AccountingWallet)
-            .WithMany(x => x.Incomes);
+        builder.HasOne(x => x.User)
+            .WithMany(x => x.AccountingTransactions)
+            .HasForeignKey(x => x.UserId)
+            .IsRequired(true);
 
         #endregion
     }

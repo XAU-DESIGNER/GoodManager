@@ -30,6 +30,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+app.UseMiddleware<UserMiddleware>();
 
 app.MapControllerRoute(
       name: "areas",

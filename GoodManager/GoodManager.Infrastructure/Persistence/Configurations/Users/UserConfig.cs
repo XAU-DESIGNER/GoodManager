@@ -1,4 +1,5 @@
-﻿using GoodManager.Domain.Models.Users;
+﻿using GoodManager.Domain.Models.Accounting;
+using GoodManager.Domain.Models.Users;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -12,11 +13,20 @@ public class UserConfig : IEntityTypeConfiguration<User>
 
         #region Proprties
 
-        builder.Property(user => user.FullName).HasMaxLength(191);
-        builder.Property(user => user.UserName).HasMaxLength(30);
-        builder.Property(user => user.Email).HasMaxLength(50);
-        builder.Property(user => user.Password).HasMaxLength(50);
-        builder.Property(user => user.AvatarName).HasMaxLength(50);
+        builder.Property(x => x.FullName).HasMaxLength(191);
+        builder.Property(x => x.UserName).HasMaxLength(30);
+        builder.Property(x => x.Email).HasMaxLength(50);
+        builder.Property(x => x.Password).HasMaxLength(50);
+        builder.Property(x => x.AvatarName).HasMaxLength(50);
+
+        #endregion
+
+        #region Relations
+
+        builder.HasMany(x => x.AccountingTransactions)
+                    .WithOne(x => x.User)
+                    .HasForeignKey(x => x.UserId)
+                    .IsRequired(true);
 
         #endregion
     }

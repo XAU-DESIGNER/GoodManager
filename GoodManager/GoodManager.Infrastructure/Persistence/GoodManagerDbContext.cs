@@ -23,9 +23,7 @@ public class GoodManagerDbContext(DbContextOptions<GoodManagerDbContext> options
 
     #region Accounting
 
-    public DbSet<AccountingWallet> AccountingWallets { get; set; }
-    public DbSet<Income> Incomes{ get; set; }
-    public DbSet<Cost> Costs { get; set; }
+    public DbSet<AccountingTransaction> AccountingTransactions { get; set; }
 
     #endregion
 

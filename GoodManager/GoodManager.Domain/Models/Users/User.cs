@@ -1,4 +1,5 @@
-﻿using GoodManager.Domain.Models.Common;
+﻿using GoodManager.Domain.Models.Accounting;
+using GoodManager.Domain.Models.Common;
 
 namespace GoodManager.Domain.Models.Users;
 
@@ -11,12 +12,13 @@ public class User : AuditBaseEntity
     public string? Password { get; set; }
     public string? Email { get; set; }
     public string? AvatarName { get; set; }
+    public int AccountingWalletId { get; set; }
 
     #endregion
 
     #region Relations
 
-
+    public ICollection<AccountingTransaction>? AccountingTransactions { get; set; }
 
     #endregion
 }

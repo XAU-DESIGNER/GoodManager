@@ -23,10 +23,10 @@ public class AccountService(IUserRepository userRepository) : IAccountService
         #region Validation
 
         bool isExist = await userRepository.AnyAsync(user => user.UserName == model.UserName!.Trim());
-        if (isExist) return Result.Failure(string.Format(ErrorMessages.AlreadyExistError, "نام کاربـری"));
+        if (isExist) return Result.Failure<User>(string.Format(ErrorMessages.AlreadyExistError, "نام کاربـری"));
 
         isExist = await userRepository.AnyAsync(user => user.Email == model.Email!.Trim());
-        if (isExist) return Result.Failure(string.Format(ErrorMessages.AlreadyExistError, "ایمیــل"));
+        if (isExist) return Result.Failure<User>(string.Format(ErrorMessages.AlreadyExistError, "ایمیــل"));
 
         #endregion
 
@@ -41,7 +41,7 @@ public class AccountService(IUserRepository userRepository) : IAccountService
 
         #endregion
 
-        return Result.Success("حساب شما ساخته شد");
+        return Result.Success(value: user, "حساب شما ساخته شد");
     }
 
     public async Task<Result<UserLoginInformationViewModel>> CheckAndGetUserForLoginAsync(LoginViewModel model)
@@ -59,5 +59,4 @@ public class AccountService(IUserRepository userRepository) : IAccountService
         return Result.Success(user.Adapt<UserLoginInformationViewModel>(),
             $"{user.UserName} عزیز خوش آمدید!");
     }
-
 }

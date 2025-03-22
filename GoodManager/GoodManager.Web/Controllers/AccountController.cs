@@ -6,6 +6,7 @@ using GoodManager.Application.Services.Interfaces.Users;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
+using GoodManager.Application.Statics;
 
 namespace GoodManager.Web.Controllers;
 
