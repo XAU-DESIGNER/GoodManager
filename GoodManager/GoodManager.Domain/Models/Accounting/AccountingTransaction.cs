@@ -11,9 +11,9 @@ public class AccountingTransaction : AuditBaseEntity
     public int UserId { get; set; }
     public decimal Amount { get; set; }
     public decimal Balance { get; set; }
-    public TransactionType TransactionType { get; set; }
-    public TransactionCause TransactionCause { get; set; }
-    public TransactionWay TransactionWay { get; set; }
+    public AccountingTransactionType TransactionType { get; set; }
+    public AccountingTransactionCause TransactionCause { get; set; }
+    public AccountingTransactionWay TransactionWay { get; set; }
 
     #endregion
 

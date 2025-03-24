@@ -1,5 +1,7 @@
-﻿using GoodManager.Application.Services.Implementation.LangCenter;
+﻿using GoodManager.Application.Services.Implementation.Accounting;
+using GoodManager.Application.Services.Implementation.LangCenter;
 using GoodManager.Application.Services.Implementation.Users;
+using GoodManager.Application.Services.Interfaces.Accounting;
 using GoodManager.Application.Services.Interfaces.LangCenter;
 using GoodManager.Application.Services.Interfaces.Users;
 using Mapster;
@@ -22,6 +24,7 @@ public static class DependencyInjection
         services.AddScoped<IAccountService, AccountService>();
         services.AddScoped<IWordService, WordService>();
         services.AddScoped<IUserService, UserService>();
+        services.AddScoped<IAccountingTransactionService, AccountingTransactionService>();
 
         #endregion
     }

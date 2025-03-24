@@ -1,6 +1,8 @@
-﻿using GoodManager.Domain.Interfaces.LangCenter;
+﻿using GoodManager.Domain.Interfaces.Accounting;
+using GoodManager.Domain.Interfaces.LangCenter;
 using GoodManager.Domain.Interfaces.Users;
 using GoodManager.Infrastructure.Persistence;
+using GoodManager.Infrastructure.Persistence.Repositories.Accounting;
 using GoodManager.Infrastructure.Persistence.Repositories.LangCenter;
 using GoodManager.Infrastructure.Persistence.Repositories.Users;
 using Mapster;
@@ -29,6 +31,7 @@ public static class DependencyInjection
 
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IWordRepository, WordRepository>();
+        services.AddScoped<IAccountingTransactionRepository, AccountingTransactionRepository>();
 
         #endregion
 

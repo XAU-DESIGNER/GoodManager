@@ -20,7 +20,4 @@
   <ItemGroup>
     <ProjectReference Include="..\GoodManager.Domain\GoodManager.Domain.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Persistence\Repositories\Accounting\" />
-  </ItemGroup>
 </Project>

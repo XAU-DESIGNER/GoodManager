@@ -190,6 +190,18 @@ $(document).on('input', '[addForm] input', async function (e) {
     $('.formBtns').fadeIn();
 })
 
+// input events
+$(document).on('input', '[priceInput]', async function () {
+    let value = $(this).val().replace(/,/g, '');
+    let hiddenInputId = $(this).attr('hiddenInputId') || $(this).attr('id');
+
+    if (!isNaN(parseFloat(value)) && isFinite(value)) {
+        $(this).val(Number(value).toLocaleString());
+
+        $(`#${hiddenInputId}`).val(value);
+    }
+})
+
 // common functions
 
 async function showErrorToasterSWAL(message, position = "bottom-end") {

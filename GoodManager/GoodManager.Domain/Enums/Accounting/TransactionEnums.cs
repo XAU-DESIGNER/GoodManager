@@ -1,24 +1,27 @@
-﻿namespace GoodManager.Domain.Enums.Accounting;
+﻿using System.ComponentModel.DataAnnotations;
 
-public enum TransactionCause
+namespace GoodManager.Domain.Enums.Accounting;
+
+public enum AccountingTransactionCause
 {
-    Learn,
-    Transportation,
-    Accessories,
-    Sport,
-    HairdressingAndHygiene,
-    Others
+    [Display(Name = "امور آموزشی")] Learn,
+    [Display(Name = "حمل و نقل")] Transportation,
+    [Display(Name = "لوازم کامپیوتری")] Accessories,
+    [Display(Name = "امـور ورزشی")] Sport,
+    [Display(Name = "آرایشگاه و پاکیزگی")] HairdressingAndHygiene,
+    [Display(Name = "سلامـتی")] Health,
+    [Display(Name = "غـیره")] Others
 }
 
-public enum TransactionWay
+public enum AccountingTransactionWay
 {
-    Cryptocurrency,
-    Bank,
-    Cash
+    [Display(Name = "ارزهای دیجیتال")] Cryptocurrency,
+    [Display(Name = "بانک")] Bank,
+    [Display(Name = "نقدی")] Cash
 }
 
-public enum TransactionType
+public enum AccountingTransactionType
 {
-    Deposit,
-    Windrow
+    [Display(Name = "درآمـد")] Income,
+    [Display(Name = "هـزینه")] Cost
 }

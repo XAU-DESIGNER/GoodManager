@@ -19,9 +19,4 @@
     <ProjectReference Include="..\GoodManager.Domain\GoodManager.Domain.csproj" />
   </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Services\Implementation\Accounting\" />
-      <Folder Include="Services\Interfaces\Accounting\" />
-    </ItemGroup>
-
 </Project>
