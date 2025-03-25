@@ -7,4 +7,5 @@ public interface IAccountingTransactionService
 {
     Task<FilterAccountingTransactionViewModel> FilterAsync(FilterAccountingTransactionViewModel filter);
     Task<Result> CreateAsync(CreateAccountingTransactionViewModel model);
+    Task<Result> DeleteAsync(int id);
 }

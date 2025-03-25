@@ -1,6 +1,8 @@
 ﻿"use strict";
 
 $(async function () {
+    await convertToPriceForFilter();
+
     $('[ajax-filter-form]').on('submit', async function (e) {
         e.preventDefault();
 
@@ -263,8 +265,22 @@ async function replaceHtmlContentWithSelector(selector, htmlContent) {
     let element = $(`${selector}`);
     element.empty();
 
-    if (htmlContent)
-        element.html(htmlContent);
+    if (htmlContent) {
+        await element.html(htmlContent);
+
+        await convertToPriceForFilter();
+    }
+}
+
+async function convertToPriceForFilter() {
+    const priceColumns = $('[priceColumn]');
+    $.each(priceColumns, function (index, value) {
+        let columnValue = $(this).text().replace(/,/g, '');
+
+        if (!isNaN(parseFloat(columnValue)) && isFinite(columnValue)) {
+            $(this).text(`${Number(columnValue).toLocaleString()} تومـان`);
+        }
+    });
 }
 
 async function displayLoading(selector, effect = 'bounce') {

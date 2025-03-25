@@ -1,5 +1,6 @@
 ﻿@using GoodManager.Application.Tools
 @using GoodManager.Domain.DTOs.ViewModels.Accounting.Transactions
+@using GoodManager.Domain.Enums.Accounting
 @using GoodManager.Infrastructure.Extensions
 
 @model FilterAccountingTransactionViewModel
@@ -11,7 +12,16 @@
             <thead>
                 <tr>
                     <th class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                        نوع
+                    </th>
+                    <th class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
                         مقـدار
+                    </th>
+                    <th class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                        دلـیل
+                    </th>
+                    <th class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                        شـیوه
                     </th>
                     <th width="30" class="whitespace-nowrap rounded-tl-lg bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5 text-center">
                         عملیات
@@ -21,11 +31,21 @@
             <tbody>
                 @foreach (var item in Model.Entities)
                 {
+
                     <tr class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500">
                         <td class="whitespace-nowrap px-4 py-3 font-medium text-slate-700 dark:text-navy-100 sm:px-5">
+                            @item.TransactionType.GetEnumName()
+                        </td>
+                        <td priceColumn class="@(item.TransactionType == AccountingTransactionType.Cost ? "text-warning" : "text-success") whitespace-nowrap px-4 py-3 font-medium text-slate-700 sm:px-5">
                             @item.Amount
                         </td>
-
+                        <td class="whitespace-nowrap px-4 py-3 font-medium text-slate-700 dark:text-navy-100 sm:px-5">
+                            @item.TransactionCause.GetEnumName()
+                        </td>
+                        <td class="whitespace-nowrap px-4 py-3 font-medium text-slate-700 dark:text-navy-100 sm:px-5">
+                            @item.TransactionWay.GetEnumName()
+                        </td>
+                        <!--todo date-->
                         <td class="whitespace-nowrap px-4 py-3 sm:px-5 flex justify-center">
                             <span>
                                 <a showModalBySwal asp-action="Details" asp-controller="Word" asp-route-id="@item.Id" class="btn size-8 p-0 text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
@@ -34,7 +54,7 @@
                                 <a showModalBySwal asp-action="Update" asp-controller="Word" asp-route-id="@item.Id" class="btn size-8 p-0 text-warning hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
                                     <i class="fa fa-pen"></i>
                                 </a>
-                                <a deleteBtn asp-action="Delete" asp-controller="Word" asp-route-id="@item.Id" class="btn size-8 p-0 hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
+                                <a deleteBtn asp-action="Delete" asp-controller="AccountingTransaction" asp-route-id="@item.Id" class="btn size-8 p-0 hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </span>

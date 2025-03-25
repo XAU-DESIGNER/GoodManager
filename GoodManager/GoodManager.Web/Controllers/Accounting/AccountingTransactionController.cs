@@ -3,7 +3,6 @@ using GoodManager.Application.Services.Interfaces.Accounting;
 using GoodManager.Domain.Common;
 using GoodManager.Domain.DTOs.ViewModels.Accounting.Transactions;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Identity.Client;
 
 namespace GoodManager.Web.Controllers.Accounting;
 
@@ -56,6 +55,18 @@ public class AccountingTransactionController(IAccountingTransactionService accou
     #endregion
 
     #region Delete
+
+    [HttpPost]
+    public async Task<IActionResult> Delete(int id)
+    {
+        if (id <= 0) return BadRequest(ErrorMessages.NullValue);
+
+        var result = await accountingTransactionService.DeleteAsync(id);
+
+        if (result.IsFailure) return BadRequest(result.Message);
+
+        return Ok(result.Message);
+    }
 
     #endregion
 

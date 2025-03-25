@@ -17,7 +17,18 @@ public class AccountingTransactionService(IAccountingTransactionRepository accou
 
         #region Filter
 
-
+        switch (filter.DeleteStatus)
+        {
+            case DeleteStatus.All:
+                filterConditions.Add(x => x.IsDeleted || !x.IsDeleted);
+                break;
+            case DeleteStatus.Deleted:
+                filterConditions.Add(x => x.IsDeleted);
+                break;
+            case DeleteStatus.NotDeleted:
+                filterConditions.Add(x => !x.IsDeleted);
+                break;
+        }
 
         #endregion
 
@@ -48,6 +59,17 @@ public class AccountingTransactionService(IAccountingTransactionRepository accou
         var objectToInsert = model.Adapt<AccountingTransaction>();
 
         await accountingTransactionRepository.InsertAsync(objectToInsert);
+        await accountingTransactionRepository.SaveChangesAsync();
+
+        return Result.Success();
+    }
+
+    public async Task<Result> DeleteAsync(int id)
+    {
+        var transaction = await accountingTransactionRepository.FirstOrDefaultAsync(x => x.Id == id);
+        if (transaction == null) return Result.Failure(ErrorMessages.NotFoundError);
+
+        accountingTransactionRepository.SoftDelete(transaction);
         await accountingTransactionRepository.SaveChangesAsync();
 
         return Result.Success();
