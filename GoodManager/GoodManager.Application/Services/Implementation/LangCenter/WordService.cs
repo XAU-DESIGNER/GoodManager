@@ -114,7 +114,7 @@ public class WordService(IWordRepository wordRepository) : IWordService
     {
         var word = await wordRepository.GetByIdAsync(id);
         if (word == null) return Result.Failure<UpdateWordViewModel>(ErrorMessages.NotFoundError);
-
+        
         return word.Adapt<UpdateWordViewModel>();
     }
 

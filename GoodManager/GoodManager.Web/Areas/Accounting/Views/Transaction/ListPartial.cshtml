@@ -36,7 +36,7 @@
                         <td class="whitespace-nowrap px-4 py-3 font-medium text-slate-700 dark:text-navy-100 sm:px-5">
                             @item.TransactionType.GetEnumName()
                         </td>
-                        <td priceColumn class="@(item.TransactionType == AccountingTransactionType.Cost ? "text-warning" : "text-success") whitespace-nowrap px-4 py-3 font-medium text-slate-700 sm:px-5">
+                        <td priceTomanFormat class="@(item.TransactionType == AccountingTransactionType.Cost ? "text-error" : "text-success") whitespace-nowrap px-4 py-3 font-medium sm:px-5">
                             @item.Amount
                         </td>
                         <td class="whitespace-nowrap px-4 py-3 font-medium text-slate-700 dark:text-navy-100 sm:px-5">
@@ -48,13 +48,10 @@
                         <!--todo date-->
                         <td class="whitespace-nowrap px-4 py-3 sm:px-5 flex justify-center">
                             <span>
-                                <a showModalBySwal asp-action="Details" asp-controller="Word" asp-route-id="@item.Id" class="btn size-8 p-0 text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
-                                    <i class="fa fa-eye"></i>
-                                </a>
-                                <a showModalBySwal asp-action="Update" asp-controller="Word" asp-route-id="@item.Id" class="btn size-8 p-0 text-warning hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
+                                <a showModalBySwal asp-action="Update" asp-controller="Transaction" asp-route-id="@item.Id" class="btn size-8 p-0 text-warning hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
                                     <i class="fa fa-pen"></i>
                                 </a>
-                                <a deleteBtn asp-action="Delete" asp-controller="AccountingTransaction" asp-route-id="@item.Id" class="btn size-8 p-0 hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
+                                <a deleteBtn asp-action="Delete" asp-controller="Transaction" asp-route-id="@item.Id" class="btn size-8 p-0 hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </span>

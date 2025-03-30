@@ -1,7 +1,7 @@
 ﻿"use strict";
 
 $(async function () {
-    await convertToPriceForFilter();
+    await convertToIranianpriceTomanFormat();
 
     $('[ajax-filter-form]').on('submit', async function (e) {
         e.preventDefault();
@@ -102,7 +102,8 @@ $(document).on('submit', '[addForm]', async function (e) {
     const successCallBack = window[$(this).attr('afterSuccess')];
     const errorCallBack = window[$(this).attr('afterError')];
     const formId = $(this).attr('id');
-    const showSuccessAlert = $(this).attr('showSuccessAlert') ?? true;
+    const showSuccessAlert = $(this).attr('showSuccessAlert') || true;
+    const isSwalModal = $(this).attr('isSwalModal') || false;
 
     await $.ajax({
         url: url,
@@ -130,7 +131,11 @@ $(document).on('submit', '[addForm]', async function (e) {
         error: async (result) => {
             await hideLoading(`#${formId}`);
 
-            await Swal.showValidationMessage(result.responseText);
+            if (isSwalModal) {
+                await Swal.showValidationMessage(result.responseText);
+            } else {
+                await showErrorToasterSWAL(result.responseText);
+            }
         }
     });
 })
@@ -214,7 +219,7 @@ async function showErrorToasterSWAL(message, position = "bottom-end") {
         timerProgressBar: true,
         showConfirmButton: false,
         icon: "error",
-        title: message || 'نا موفق'
+        title: message || 'عملیات شـکست خورد'
     });
 }
 
@@ -268,13 +273,13 @@ async function replaceHtmlContentWithSelector(selector, htmlContent) {
     if (htmlContent) {
         await element.html(htmlContent);
 
-        await convertToPriceForFilter();
+        await convertToIranianpriceTomanFormat();
     }
 }
 
-async function convertToPriceForFilter() {
-    const priceColumns = $('[priceColumn]');
-    $.each(priceColumns, function (index, value) {
+async function convertToIranianpriceTomanFormat() {
+    const priceTomanFormats = $('[priceTomanFormat]');
+    $.each(priceTomanFormats, function (index, value) {
         let columnValue = $(this).text().replace(/,/g, '');
 
         if (!isNaN(parseFloat(columnValue)) && isFinite(columnValue)) {

@@ -76,7 +76,7 @@ public static class ErrorMessages
 
     public const string MaxLengthError = "تعداد کاراکتر مجاز {1} عدد می باشد";
 
-    public const string NullValue = "مقادیر نادرست";
+    public const string NullValue = "مقادیر نادرست می باشد";
 
     public const string NotFoundError = "موردی یافت نشد";
 
@@ -129,7 +129,9 @@ public static class ErrorMessages
 
     public const string BannerInUseError = "این بنر قبلا استفاده شده است";
 
-    public const string AccountIsNotActive = "حساب کاربری فعال نمیباشد";
+    public const string AccountIsNotActive = "حساب کاربری فعال نمی باشد";
+
+    public const string IsNotLatestTransaction = "این تراکنش آخرین تراکنش نمی باشد";
 
     #region Roles
 

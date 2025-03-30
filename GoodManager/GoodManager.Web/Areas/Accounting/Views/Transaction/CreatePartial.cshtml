@@ -3,7 +3,7 @@
 @using GoodManager.Domain.Enums.Common
 @model CreateAccountingTransactionViewModel
 
-<form addForm id="addForm" asp-action="Create" asp-controller="AccountingTransaction" type="post">
+<form addForm id="addForm" asp-action="Create" asp-controller="Transaction" type="post">
     <div class="flex items-center justify-between">
         <h2 class="text-base font-medium tracking-wide text-slate-700 line-clamp-1 dark:text-navy-100">
             افزودن تراکنـش
@@ -28,17 +28,17 @@
             @* </label> *@
             @* <span class="text-xs-plus">نـوع تراکـنش</span> *@
             <select asp-for="TransactionWay" asp-items="Html.GetEnumSelectList<AccountingTransactionWay>()" class="form-select h-9 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent">
-                <option selected disabled>طریق تراکنش</option>
+                <option selected disabled>طـریق تراکنش</option>
             </select>
             <span asp-validation-for="TransactionWay"></span>
 
             <select asp-for="TransactionCause" asp-items="Html.GetEnumSelectList<AccountingTransactionCause>()" class="form-select h-9 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent">
-                <option selected disabled>دلیل تراکنـش</option>
+                <option selected disabled>دلـیل تراکنـش</option>
             </select>
             <span asp-validation-for="TransactionCause"></span>
 
             <select asp-for="TransactionType" asp-items="Html.GetEnumSelectList<AccountingTransactionType>()" class="form-select h-9 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent">
-                <option selected disabled>نوع تراکنـش</option>
+                <option selected disabled>نـوع تراکنـش</option>
             </select>
             <span asp-validation-for="TransactionType"></span>
 

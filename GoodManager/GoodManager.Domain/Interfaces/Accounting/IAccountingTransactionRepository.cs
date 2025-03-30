@@ -3,4 +3,7 @@ using GoodManager.Domain.Models.Accounting;
 
 namespace GoodManager.Domain.Interfaces.Accounting;
 
-public interface IAccountingTransactionRepository:IRepository<AccountingTransaction>;
+public interface IAccountingTransactionRepository : IRepository<AccountingTransaction>
+{
+    int GetLatestTransactionId();
+}

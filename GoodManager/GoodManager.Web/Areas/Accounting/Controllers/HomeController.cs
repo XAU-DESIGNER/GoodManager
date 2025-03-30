@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace GoodManager.Web.Controllers.Accounting;
+namespace GoodManager.Web.Areas.Accounting.Controllers;
 
-public class AccountingController : SiteBaseController
+public class HomeController : AccountingBaseController
 {
     #region Index
 

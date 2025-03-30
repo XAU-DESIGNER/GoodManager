@@ -5,7 +5,7 @@ namespace GoodManager.Domain.DTOs.ViewModels.Accounting.Transactions;
 public class AccountingTransactionDetailsForFilterViewModel
 {
     public int Id { get; set; }
-    public int Amount { get; set; }
+    public decimal Amount { get; set; }
     public AccountingTransactionType TransactionType{ get; set; }
     public AccountingTransactionCause TransactionCause { get; set; }
     public AccountingTransactionWay TransactionWay { get; set; }

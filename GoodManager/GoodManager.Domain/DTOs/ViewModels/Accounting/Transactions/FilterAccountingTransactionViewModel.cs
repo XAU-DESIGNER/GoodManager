@@ -2,6 +2,7 @@
 using GoodManager.Domain.Common.Filter;
 using GoodManager.Domain.Enums.Common;
 using System.ComponentModel.DataAnnotations;
+using System.Security.Principal;
 
 namespace GoodManager.Domain.DTOs.ViewModels.Accounting.Transactions;
 
@@ -9,4 +10,6 @@ public class FilterAccountingTransactionViewModel : BasePaging<AccountingTransac
 {
     [Display(Name = "وضعیت حذف"), FilterInput]
     public DeleteStatus DeleteStatus { get; set; }
+
+    public int? UserId { get; set; }
 }
