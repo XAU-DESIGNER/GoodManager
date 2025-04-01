@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <!-- Meta tags  -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+
+    <title>مدیر خوب | @ViewData["Title"]</title>
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+
+    <partial name="_HeaderReferencesPartial" />
+    @await RenderSectionAsync("HeaderReferences", false)
+</head>
+
+<body x-data class="is-header-blur" x-bind="$store.global.documentBody">
+    <!-- App preloader-->
+    <div class="app-preloader fixed z-50 grid h-full w-full place-content-center bg-slate-50 dark:bg-navy-900">
+        <div class="app-preloader-inner relative inline-block size-48"></div>
+    </div>
+
+    <!-- Page Wrapper -->
+    <div id="root"
+         class="min-h-100vh flex grow bg-slate-50 dark:bg-navy-900"
+         x-cloak>
+        <!-- Sidebar -->
+        <partial name="_SideBarPartial" />
+
+        <!-- App Header Wrapper-->
+        <partial name="_HeaderPartial" />
+
+        <!-- Mobile Searchbar -->
+        @* <partial name="_MobileSearchbarPartial" /> *@
+
+        <!-- Right Sidebar -->
+        @* <partial name="_RightSideBarPartial" /> *@
+
+        <!-- Main Content Wrapper -->
+        <main class="main-content px-[var(--margin-x)] w-full pb-8">
+            @await RenderSectionAsync("BreadCrumb", false)
+
+            @RenderBody()
+            @* <partial name="_FooterPartial" /> *@
+        </main>
+    </div>
+
+    <partial name="_FooterReferencesPartial" />
+    <partial name="_Notifications" />
+
+    @await RenderSectionAsync("FooterReferences", false)
+</body>
+</html>

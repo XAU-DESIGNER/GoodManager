@@ -5,17 +5,24 @@ namespace GoodManager.Web.Extensions;
 
 public static class UserExtensions
 {
-    public static UserIdentitiesViewModel? GetUserIdentities(this object? httpContextItem)
+    public static UserIdentitiesViewModel? GetUserIdentities(this HttpContext? context)
     {
-        if (httpContextItem == null) return null;
+        if (context?.Items["CurrentUser"] == null) return null;
 
         try
         {
-            return httpContextItem.Adapt<UserIdentitiesViewModel>();
+            return context?.Items["CurrentUser"] as UserIdentitiesViewModel;
         }
         catch
         {
             return null;
         }
     }
+    //public static string GetUserName(this HttpContext? context)
+    //{
+    //    if (context?.Items["CurrentUser"] == null) return "بدون نام کاربـری";
+    //    var identities = context?.Items["CurrentUser"].Adapt<UserIdentitiesViewModel>();
+
+    //    return identities?.UserName ?? "بدون نام کاربـری";
+    //}
 }
