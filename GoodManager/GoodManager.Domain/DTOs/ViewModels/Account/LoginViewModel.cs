@@ -9,7 +9,7 @@ public class LoginViewModel
 
     [Display(Name = "نام کاربری یا ایمیل")]
     [Required(ErrorMessage = ErrorMessages.RequiredError)]
-    [RegularExpression(@"^[a-zA-Z0-9@\.]+$", ErrorMessage = ErrorMessages.RegexIncorrectFormat)]
+    [RegularExpression(@"^[a-zA-Z0-9_@\.]+$", ErrorMessage = ErrorMessages.RegexIncorrectFormat)]
     [MaxLength(30, ErrorMessage = ErrorMessages.MaxLengthError)]
     public string? UserNameOrEmail { get; set; }
 

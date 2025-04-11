@@ -12,4 +12,13 @@ public class HomeController : LangCenterBaseController
     }
 
     #endregion
+
+    #region Exam center
+
+    public IActionResult LangCenter()
+    {
+        return View();
+    }
+
+    #endregion
 }

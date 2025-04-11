@@ -1,12 +1,11 @@
 ﻿using GoodManager.Application.Services.Interfaces.LangCenter;
 using GoodManager.Domain.Common;
 using GoodManager.Domain.DTOs.ViewModels.LangCenter.Words;
-using GoodManager.Web.Controllers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GoodManager.Web.Areas.LangCenter.Controllers;
 
-public class WordController(IWordService wordService) : SiteBaseController
+public class WordController(IWordService wordService) : LangCenterBaseController
 {
     #region Filter
 
