@@ -21,7 +21,7 @@ public class AccountingTransactionConfig : IEntityTypeConfiguration<AccountingTr
         builder.HasOne(x => x.User)
             .WithMany(x => x.AccountingTransactions)
             .HasForeignKey(x => x.UserId)
-            .IsRequired(true);
+            .IsRequired();
 
         #endregion
     }

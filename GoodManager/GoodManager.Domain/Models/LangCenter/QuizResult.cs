@@ -1,5 +1,6 @@
 ﻿using GoodManager.Domain.Models.Common;
 using GoodManager.Domain.Models.Users;
+using System.ComponentModel.DataAnnotations;
 
 namespace GoodManager.Domain.Models.LangCenter;
 
@@ -13,10 +14,10 @@ public class QuizResult : AuditBaseEntity
     public int CorrectAnswers { get; set; }
     public int WrongAnswers { get; set; }
     public int SkippedQuestions { get; set; }
-    public double Accuracy => CorrectAnswers / (double)(CorrectAnswers + WrongAnswers);
 
-    //[Range(0, 100)]
-    public double Score { get; set; }
+    [Range(0, 100)]
+    public int Score { get; set; }
+
     public TimeSpan Duration { get; set; }
     public DateTime CompletedAt { get; set; } = DateTime.UtcNow;
 
@@ -27,7 +28,7 @@ public class QuizResult : AuditBaseEntity
 
     public User? User { get; set; }
     public Quiz? Quiz { get; set; }
-    public ICollection<UserAnswer>? UserAnswers { get; set; }
+    public ICollection<UserAnswer>? Answers { get; set; }
 
     #endregion
 }

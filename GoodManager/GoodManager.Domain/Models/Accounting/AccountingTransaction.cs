@@ -10,7 +10,6 @@ public class AccountingTransaction : AuditBaseEntity
 
     public int UserId { get; set; }
     public decimal Amount { get; set; }
-    public decimal Balance { get; set; }
     public AccountingTransactionType TransactionType { get; set; }
     public AccountingTransactionCause TransactionCause { get; set; }
     public AccountingTransactionWay TransactionWay { get; set; }

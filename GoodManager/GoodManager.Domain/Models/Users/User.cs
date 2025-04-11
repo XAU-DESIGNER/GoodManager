@@ -1,5 +1,6 @@
 ﻿using GoodManager.Domain.Models.Accounting;
 using GoodManager.Domain.Models.Common;
+using GoodManager.Domain.Models.LangCenter;
 
 namespace GoodManager.Domain.Models.Users;
 
@@ -19,6 +20,9 @@ public class User : AuditBaseEntity
     #region Relations
 
     public ICollection<AccountingTransaction>? AccountingTransactions { get; set; }
+    public ICollection<Word>? Words { get; set; }
+    public ICollection<Quiz>? Quizzes { get; set; }
+    public ICollection<QuizResult>? Results { get; set; }
 
     #endregion
 }

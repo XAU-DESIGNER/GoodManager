@@ -1,5 +1,6 @@
 ﻿using GoodManager.Domain.Enums.LangCenter;
 using GoodManager.Domain.Models.Common;
+using System.ComponentModel.DataAnnotations;
 
 namespace GoodManager.Domain.Models.LangCenter;
 
@@ -8,12 +9,13 @@ public class QuizQuestion : AuditBaseEntity
     #region Properties
 
     public int QuizId { get; set; }
+
+    [Range(0,100)]
     public int Mark { get; set; } = 1;
-    public string? Text { get; set; }
+    public string? Title { get; set; }
     public string? CorrectAnswer { get; set; }
 
-    //[Range(1, 10)]
-    public List<string> Options { get; set; } = new List<string>();
+    public List<string>? Options { get; set; }
     public QuestionType QuestionType { get; set; } = QuestionType.Dictation;
     public DifficultyLevel Difficulty { get; set; } = DifficultyLevel.Medium;
 

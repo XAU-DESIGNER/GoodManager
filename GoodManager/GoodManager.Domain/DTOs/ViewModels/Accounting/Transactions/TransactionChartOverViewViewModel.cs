@@ -2,5 +2,4 @@
 
 public class TransactionChartOverviewViewModel
 {
-    public decimal Balance { get; set; }
 }

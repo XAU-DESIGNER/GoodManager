@@ -1,5 +1,4 @@
-﻿using GoodManager.Domain.Models.Accounting;
-using GoodManager.Domain.Models.Users;
+﻿using GoodManager.Domain.Models.Users;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -24,9 +23,25 @@ public class UserConfig : IEntityTypeConfiguration<User>
         #region Relations
 
         builder.HasMany(x => x.AccountingTransactions)
-                    .WithOne(x => x.User)
-                    .HasForeignKey(x => x.UserId)
-                    .IsRequired(true);
+            .WithOne(x => x.User)
+            .HasForeignKey(x => x.UserId)
+            .IsRequired(true);
+
+        builder.HasMany(x => x.Words)
+            .WithOne(x => x.User)
+            .HasForeignKey(x => x.UserId)
+            .IsRequired();
+
+        builder.HasMany(x => x.Quizzes)
+            .WithOne(x => x.User)
+            .HasForeignKey(x => x.UserId)
+            .IsRequired();
+
+        builder.HasMany(x => x.Results)
+            .WithOne(x => x.User)
+            .HasForeignKey(x => x.UserId)
+            .OnDelete(DeleteBehavior.Restrict)
+            .IsRequired();
 
         #endregion
     }

@@ -1,5 +1,6 @@
 ﻿using GoodManager.Domain.Enums.LangCenter;
 using GoodManager.Domain.Models.Common;
+using GoodManager.Domain.Models.Users;
 
 namespace GoodManager.Domain.Models.LangCenter;
 
@@ -9,6 +10,7 @@ public class Quiz : AuditBaseEntity
 
     public string? Title { get; set; }
     public int QuestionsCount { get; set; }
+    public int UserId { get; set; }
 
     public QuizType QuizType { get; set; }
 
@@ -22,6 +24,7 @@ public class Quiz : AuditBaseEntity
 
     #region Relations
 
+    public User? User { get; set; }
     public ICollection<QuizQuestion>? Questions { get; set; }
     public ICollection<QuizResult>? Results { get; set; }
 

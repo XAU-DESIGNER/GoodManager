@@ -63,28 +63,6 @@ public class AccountingTransactionService(IAccountingTransactionRepository accou
         var userLatestTransaction = await accountingTransactionRepository.
             FirstOrDefaultAsync(x => x.UserId == model.UserId && !x.IsDeleted, orderByDesc: x => x.Id);
 
-        if (userLatestTransaction == null)
-        {
-            if (model.TransactionType == AccountingTransactionType.Cost) return Result.Failure(ErrorMessages.NotEnoughBalance);
-
-            objectToInsert.Balance = model.Amount;
-        }
-        else
-        {
-            if (userLatestTransaction.Balance < model.Amount && model.TransactionType == AccountingTransactionType.Cost) return Result.Failure(ErrorMessages.NotEnoughBalance);
-
-            var balance = userLatestTransaction.Balance;
-
-            if (model.TransactionType == AccountingTransactionType.Income)
-            {
-                objectToInsert.Balance = balance + model.Amount;
-            }
-            else
-            {
-                objectToInsert.Balance = balance - model.Amount;
-            }
-        }
-
         #endregion
 
         await accountingTransactionRepository.InsertAsync(objectToInsert);
@@ -114,7 +92,7 @@ public class AccountingTransactionService(IAccountingTransactionRepository accou
 
         var result = new TransactionChartOverviewViewModel()
         {
-            Balance = latestTransaction?.Balance ?? 0
+            //Balance = latestTransaction?.Balance ?? 0
         };
 
         return Result.Success(value: result);
