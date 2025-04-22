@@ -14,3 +14,14 @@
 /GoodManager/GoodManager.Infrastructure/obj
 /GoodManager/GoodManager.Web/bin/Debug/net8.0
 /GoodManager/GoodManager.Web/obj
+/GoodManager.IntegrationTests/obj
+/GoodManager.UnitTests/obj
+/src/GoodManager.Application/bin/Debug/net8.0
+/src/GoodManager.Application/obj
+/src/GoodManager.Domain/bin/Debug/net8.0
+/src/GoodManager.Domain/obj
+/src/GoodManager.Infrastructure/bin/Debug/net8.0
+/src/GoodManager.Infrastructure/Migrations
+/src/GoodManager.Infrastructure/obj
+/src/GoodManager.Web/bin/Debug/net8.0
+/src/GoodManager.Web/obj

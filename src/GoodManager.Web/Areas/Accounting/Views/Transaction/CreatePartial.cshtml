@@ -1,0 +1,57 @@
+﻿@using GoodManager.Domain.DTOs.ViewModels.Accounting.Transactions
+@using GoodManager.Domain.Enums.Accounting
+@using GoodManager.Domain.Enums.Common
+@model CreateAccountingTransactionViewModel
+
+<form addForm id="addForm" asp-action="Create" asp-controller="Transaction" type="post">
+    <div class="flex items-center justify-between">
+        <h2 class="text-base font-medium tracking-wide text-slate-700 line-clamp-1 dark:text-navy-100">
+            افزودن تراکنـش
+        </h2>
+        <div class="flex">
+            <button type="reset" style="display:none;" class="btn size-8 rounded-full formBtns p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+                <i class="fas fa-trash"></i>
+            </button>
+            @* <a showModalBySwal asp-action="Create" asp-controller="AccountingTransaction" *@
+            @*    class="btn size-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"> *@
+            @*     <i class="fas fa-plus"></i> *@
+            @* </a> *@
+        </div>
+    </div>
+    <div class="card mt-3 col-span-12 p-5 lg:col-span-4">
+        <div class="mt-2 space-y-4">
+            @* <label class="block"> *@
+            @*     <span class="text-xs-plus">Pay to</span> *@
+            @*     <input x-input-mask="{ *@
+            @*           creditCard: true *@
+            @*       }" class="form-input mt-1.5 h-9 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent" placeholder="**** **** **** ****" type="text"> *@
+            @* </label> *@
+            @* <span class="text-xs-plus">نـوع تراکـنش</span> *@
+            <select asp-for="TransactionWay" asp-items="Html.GetEnumSelectList<AccountingTransactionWay>()" class="form-select h-9 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent">
+                <option selected disabled>طـریق تراکنش</option>
+            </select>
+            <span asp-validation-for="TransactionWay"></span>
+
+            <select asp-for="TransactionCause" asp-items="Html.GetEnumSelectList<AccountingTransactionCause>()" class="form-select h-9 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent">
+                <option selected disabled>دلـیل تراکنـش</option>
+            </select>
+            <span asp-validation-for="TransactionCause"></span>
+
+            <select asp-for="TransactionType" asp-items="Html.GetEnumSelectList<AccountingTransactionType>()" class="form-select h-9 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent">
+                <option selected disabled>نـوع تراکنـش</option>
+            </select>
+            <span asp-validation-for="TransactionType"></span>
+
+            <div class="flex h-9 -space-x-px">
+                <select asp-for="CurrencyType" asp-items="Html.GetEnumSelectList<CurrencyType>()" class="form-select rounded-r-lg border border-slate-300 bg-white px-3 py-2 pl-9 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent">
+                </select>
+                <input priceInput hiddenInputId="hidden_amount" class="form-input w-full dir-ltr rounded-l-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent" placeholder="مـبلغ" type="text">
+                <input type="hidden"  id="hidden_amount" asp-for="Amount" />
+            </div>
+            <span asp-validation-for="Amount"></span>
+        </div>
+        <button type="submit" style="display:none;" class="btn formBtns mt-5 h-10 w-full bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
+            ثـبت
+        </button>
+    </div>
+</form>

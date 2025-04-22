@@ -1,0 +1,84 @@
+﻿@using GoodManager.Application.Tools
+@using GoodManager.Domain.DTOs.ViewModels.Accounting.Transactions
+@using GoodManager.Domain.Enums.Accounting
+@using GoodManager.Domain.Enums.Common
+@using GoodManager.Infrastructure.Extensions
+
+@model FilterAccountingTransactionViewModel
+
+@if (Model.AllEntitiesCount > 0)
+{
+    <div class="is-scrollbar-hidden min-w-full overflow-x-auto">
+        <table class="is-hoverable w-full text-right">
+            <thead>
+                <tr>
+                    <th class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                        نوع
+                    </th>
+                    <th class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                        مقـدار
+                    </th>
+                    <th class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                        دلـیل
+                    </th>
+                    <th class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                        شـیوه
+                    </th>
+                    <th width="30" class="whitespace-nowrap rounded-tl-lg bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5 text-center">
+                        عملیات
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Entities)
+                {
+
+                    <tr class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500">
+                        <td class="whitespace-nowrap px-4 py-3 font-medium text-slate-700 dark:text-navy-100 sm:px-5">
+                            @item.TransactionType.GetEnumName()
+                        </td>
+                        <td @((item.CurrencyType == CurrencyType.Toman) ? "priceTomanFormat" : "priceDollarFormat") class="@(item.TransactionType == AccountingTransactionType.Cost ? "text-error" : "text-success") whitespace-nowrap px-4 py-3 font-medium sm:px-5">
+                            @item.Amount
+                        </td>
+                        <td class="whitespace-nowrap px-4 py-3 font-medium text-slate-700 dark:text-navy-100 sm:px-5">
+                            @item.TransactionCause.GetEnumName()
+                        </td>
+                        <td class="whitespace-nowrap px-4 py-3 font-medium text-slate-700 dark:text-navy-100 sm:px-5">
+                            @item.TransactionWay.GetEnumName()
+                        </td>
+                        <!--todo date-->
+                        <td class="whitespace-nowrap px-4 py-3 sm:px-5 flex justify-center">
+                            <span>
+                                <a showModalBySwal asp-action="Update" asp-controller="Transaction" asp-route-id="@item.Id" class="btn size-8 p-0 text-warning hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
+                                    <i class="fa fa-pen"></i>
+                                </a>
+                                <a deleteBtn asp-action="Delete" asp-controller="Transaction" asp-route-id="@item.Id" class="btn size-8 p-0 hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="flex flex-col items-center p-6 text-center">
+        <div class="w-full max-w-xs">
+            <img class="w-full" src="~/theme/images/illustrations/ufo.svg" alt="image">
+        </div>
+        <p class="pt-4 text-xl font-semibold text-slate-800 dark:text-navy-50">
+            موردی یافت نشد
+        </p>
+        <p class="pt-2 text-slate-500 dark:text-navy-200">
+            ایتمی جهت نمایش وجود ندارد
+        </p>
+        @* <button class="btn mt-8 h-11 bg-primary text-base font-medium text-white hover:bg-primary-focus hover:shadow-lg hover:shadow-primary/50 focus:bg-primary-focus focus:shadow-lg focus:shadow-primary/50 active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:hover:shadow-accent/50 dark:focus:bg-accent-focus dark:focus:shadow-accent/50 dark:active:bg-accent/90"> *@
+        @*     Back To Home *@
+        @* </button> *@
+    </div>
+}
+
+<partial name="_AjaxPagingPartial" model="@Model.GetCurrentPaging()" />
