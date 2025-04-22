@@ -1,0 +1,37 @@
+﻿@using GoodManager.Application.Tools
+@using GoodManager.Domain.DTOs.ViewModels.Accounting.Transactions
+@using GoodManager.Domain.Enums.Accounting
+@using GoodManager.Domain.Enums.Common
+@model FilterAccountingTransactionViewModel
+
+<div class="card px-4 pb-5 sm:px-5">
+    <div class="my-3 flex h-8 items-center justify-between">
+        <h2 class="font-medium tracking-wide text-slate-700 dark:text-navy-100">
+            تراکـنش ها
+        </h2>
+        <a asp-action="Filter" asp-controller="Transaction" class="border-b border-dotted border-current pb-0.5 text-xs-plus font-medium text-primary outline-hidden transition-colors duration-300 hover:text-primary/70 focus:text-primary/70 dark:text-accent-light dark:hover:text-accent-light/70 dark:focus:text-accent-light/70">
+            مـشاهده هـمه
+        </a>
+    </div>
+    <div class="space-y-4">
+        @if (Model?.AllEntitiesCount > 0)
+        {
+            foreach (var item in Model.Entities)
+            {
+                <div class="flex cursor-pointer items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <div>
+                            <p class="text-slate-700 dark:text-navy-100">
+                                @item.TransactionCause.GetEnumName()
+                            </p>
+                            <p class="text-xs text-slate-400 line-clamp-1 dark:text-navy-200">
+                                Dec 21, 2021 - 08:05
+                            </p>
+                        </div>
+                    </div>
+                    <p class="font-medium @(item.TransactionType == AccountingTransactionType.Cost ? "text-error" : "text-success")" @((item.CurrencyType == CurrencyType.Toman) ? "priceTomanFormat" : "priceDollarFormat")>@item.Amount</p>
+                </div>
+            }
+        }
+    </div>
+</div>

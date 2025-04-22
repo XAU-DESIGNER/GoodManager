@@ -3,46 +3,10 @@
 $(async function () {
     await convertToIranianPriceWithTomanFormat();
     await convertToPriceWithDollarFormat();
-
-    $("#currentStep").trigger('change' , 2)
-
-    $('[ajax-filter-form]').on('submit', async function (e) {
-        e.preventDefault();
-
-        const url = $(this).attr('action');
-        const type = $(this).attr('method');
-        let boxToReplace = $(this).data('replace');
-
-        let formData = new FormData(this);
-
-        await $.ajax({
-            url: url,
-            data: formData,
-            type: type,
-            contentType: false,
-            processData: false,
-            beforeSend: async () => {
-                await displayLoading(boxToReplace);
-            },
-            success: async function (result) {
-                replaceHtmlContentWithSelector(boxToReplace, result);
-            },
-            error: async (message) => {
-                await console.log(message);
-            }
-        });
-    })
-
-    $('[editForm] input').on('input', function () {
-        $('.formBtns').fadeIn();
-    })
-
-    $('[editForm]').on('reset', function (e) {
-        $('.formBtns').hide();
-    })
 });
 
 // list actions btns
+
 $(document).on('click', '[showModalBySwal]', async function (e) {
     e.preventDefault();
     const url = $(this).attr('href');
@@ -95,7 +59,39 @@ $(document).on('click', '[deleteBtn]', async function (e) {
 })
 
 // form events
-$(document).on('submit', '[addForm]', async function (e) {
+
+$('[ajax-filter-form]').on('submit', async function (e) {
+    e.preventDefault();
+
+    const url = $(this).attr('action');
+    const type = $(this).attr('method');
+    let boxToReplace = $(this).data('replace');
+
+    let formData = new FormData(this);
+
+    await $.ajax({
+        url: url,
+        data: formData,
+        type: type,
+        contentType: false,
+        processData: false,
+        beforeSend: async () => {
+            await displayLoading(boxToReplace);
+        },
+        success: async function (result) {
+            replaceHtmlContentWithSelector(boxToReplace, result);
+        },
+        error: async (message) => {
+            await console.log(message);
+        }
+    });
+})
+
+$('[addForm]').on('reset', async function (e) {
+    $('.formBtns').hide();
+})
+
+$('[addForm]').on('submit', async function (e) {
     e.preventDefault();
 
     let form = $(this);
@@ -143,7 +139,11 @@ $(document).on('submit', '[addForm]', async function (e) {
     });
 })
 
-$(document).on('submit', '[editForm]', async function (e) {
+$('[addForm] input').on('input', async function (e) {
+    $('.formBtns').fadeIn();
+})
+
+$('[editForm]').on('submit', async function (e) {
     e.preventDefault();
 
     let form = $(this);
@@ -192,12 +192,12 @@ $(document).on('submit', '[editForm]', async function (e) {
     });
 })
 
-$(document).on('reset', '[addForm]', async function (e) {
-    $('.formBtns').hide();
+$('[editForm] input').on('input', function () {
+    $('.formBtns').fadeIn();
 })
 
-$(document).on('input', '[addForm] input', async function (e) {
-    $('.formBtns').fadeIn();
+$('[editForm]').on('reset', function (e) {
+    $('.formBtns').hide();
 })
 
 // input events
@@ -320,7 +320,7 @@ async function convertToPriceWithDollarFormat() {
         let columnValue = $(this).text().replace(/,/g, '');
 
         if (!isNaN(parseFloat(columnValue)) && isFinite(columnValue)) {
-            $(this).text(`$${Number(columnValue).toLocaleString()}`);
+            $(this).text(`${Number(columnValue).toLocaleString()} دلار`);
         }
     });
 }
