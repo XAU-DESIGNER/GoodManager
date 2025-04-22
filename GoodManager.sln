@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoodManager.UnitTests", "Go
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoodManager.IntegrationTests", "GoodManager.IntegrationTests\GoodManager.IntegrationTests.csproj", "{59C7AB2F-6E67-4E41-A894-0FFBAB1AAFCF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoodManagerEndToEndTests", "GoodManagerEndToEndTests\GoodManagerEndToEndTests.csproj", "{525B4B40-23BA-4B80-BA58-16E157E72C26}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{59C7AB2F-6E67-4E41-A894-0FFBAB1AAFCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59C7AB2F-6E67-4E41-A894-0FFBAB1AAFCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59C7AB2F-6E67-4E41-A894-0FFBAB1AAFCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{525B4B40-23BA-4B80-BA58-16E157E72C26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{525B4B40-23BA-4B80-BA58-16E157E72C26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{525B4B40-23BA-4B80-BA58-16E157E72C26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{525B4B40-23BA-4B80-BA58-16E157E72C26}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,5 +66,6 @@ Global
 		{EE46CB47-02D4-46B0-9CEC-26CCDC775690} = {87BF0FAA-0239-4B03-ABD2-AF8991B3FDBE}
 		{0ABEF422-D7EB-4A93-934F-BE8FAC13B6A7} = {BABB2D76-2DBE-42F7-868A-ABB5DE7647B3}
 		{59C7AB2F-6E67-4E41-A894-0FFBAB1AAFCF} = {BABB2D76-2DBE-42F7-868A-ABB5DE7647B3}
+		{525B4B40-23BA-4B80-BA58-16E157E72C26} = {BABB2D76-2DBE-42F7-868A-ABB5DE7647B3}
 	EndGlobalSection
 EndGlobal
