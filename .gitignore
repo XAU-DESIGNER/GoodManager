@@ -27,3 +27,5 @@
 /src/GoodManager.Web/obj
 /GoodManager.UnitTests/bin
 /GoodManagerEndToEndTests/obj
+/GoodManager.IntegrationTests/bin/Debug/net9.0
+/GoodManagerEndToEndTests/bin/Debug/net9.0
