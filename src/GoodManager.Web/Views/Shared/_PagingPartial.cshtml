@@ -9,7 +9,7 @@
                 @if (Model.StartPage < Model.Page)
                 {
                     <li class="page-item">
-                        <a href="javascript:void(0)" class="page-link" onclick="FillPageId(@(Model.Page -1))" aria-label="قبلی">
+                        <a href="javascript:void(0)" class="page-link" onclick="fillPageId(@(Model.Page -1))" aria-label="قبلی">
                             قبلی
                         </a>
                     </li>
@@ -25,14 +25,14 @@
                     else
                     {
                         <li class="page-item">
-                                        <a href="javascript:void(0)" class="page-link" onclick="FillPageId(@i)">@i</a>
+                                        <a href="javascript:void(0)" class="page-link" onclick="fillPageId(@i)">@i</a>
                         </li>
                     }
                 }
                 @if (Model.EndPage > Model.Page)
                 {
                     <li class="page-item">
-                                <a href="javascript:void(0)" class="page-link" onclick="FillPageId(@(Model.Page +1))" aria-label="بعدی">
+                                <a href="javascript:void(0)" class="page-link" onclick="fillPageId(@(Model.Page +1))" aria-label="بعدی">
                             بعدی
                         </a>
                     </li>

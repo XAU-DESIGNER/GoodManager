@@ -8,15 +8,15 @@
 
   <ItemGroup>
     <PackageReference Include="Mapster" />
-    <PackageReference Include="Mapster.DependencyInjection"/>
-    <PackageReference Include="HtmlSanitizer"/>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor"/>
-    <PackageReference Include="Microsoft.EntityFrameworkCore"/>
-    <PackageReference Include="SixLabors.ImageSharp"/>
+    <PackageReference Include="Mapster.DependencyInjection" />
+    <PackageReference Include="HtmlSanitizer" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" />
+    <PackageReference Include="SixLabors.ImageSharp" />
   </ItemGroup>
 
     <ItemGroup>
-    <ProjectReference Include="..\GoodManager.Domain\GoodManager.Domain.csproj"/>
+    <ProjectReference Include="..\GoodManager.Domain\GoodManager.Domain.csproj" />
   </ItemGroup>
 
 </Project>

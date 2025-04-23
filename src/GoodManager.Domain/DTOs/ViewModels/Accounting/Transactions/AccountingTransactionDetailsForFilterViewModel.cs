@@ -7,7 +7,8 @@ public class AccountingTransactionDetailsForFilterViewModel
 {
     public int Id { get; set; }
     public decimal Amount { get; set; }
-    public AccountingTransactionType TransactionType{ get; set; }
+    public DateTime CreatedDateOnUtc { get; set; }
+    public AccountingTransactionType TransactionType { get; set; }
     public AccountingTransactionCause TransactionCause { get; set; }
     public AccountingTransactionWay TransactionWay { get; set; }
     public CurrencyType CurrencyType { get; set; }

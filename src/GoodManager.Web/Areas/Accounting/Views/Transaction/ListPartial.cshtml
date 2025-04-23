@@ -2,6 +2,7 @@
 @using GoodManager.Domain.DTOs.ViewModels.Accounting.Transactions
 @using GoodManager.Domain.Enums.Accounting
 @using GoodManager.Domain.Enums.Common
+@using GoodManager.Application.Convertors
 @using GoodManager.Infrastructure.Extensions
 
 @model FilterAccountingTransactionViewModel
@@ -13,7 +14,7 @@
             <thead>
                 <tr>
                     <th class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
-                        نوع
+                        تاریخ
                     </th>
                     <th class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
                         مقـدار
@@ -35,7 +36,7 @@
 
                     <tr class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500">
                         <td class="whitespace-nowrap px-4 py-3 font-medium text-slate-700 dark:text-navy-100 sm:px-5">
-                            @item.TransactionType.GetEnumName()
+                            @item.CreatedDateOnUtc.ToPersianDateWithoutClock()
                         </td>
                         <td @((item.CurrencyType == CurrencyType.Toman) ? "priceTomanFormat" : "priceDollarFormat") class="@(item.TransactionType == AccountingTransactionType.Cost ? "text-error" : "text-success") whitespace-nowrap px-4 py-3 font-medium sm:px-5">
                             @item.Amount

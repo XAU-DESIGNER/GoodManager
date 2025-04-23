@@ -6,7 +6,6 @@ $(async function () {
 });
 
 // list actions btns
-
 $(document).on('click', '[showModalBySwal]', async function (e) {
     e.preventDefault();
     const url = $(this).attr('href');
@@ -59,7 +58,6 @@ $(document).on('click', '[deleteBtn]', async function (e) {
 })
 
 // form events
-
 $('[ajax-filter-form]').on('submit', async function (e) {
     e.preventDefault();
 
@@ -236,16 +234,9 @@ $(document).on('change', '#currentStep', async function () {
 
 // common functions
 
-async function showErrorToasterSWAL(message, position = "bottom-end") {
-    await swal.fire({
-        timer: 2500,
-        toast: true,
-        position: position,
-        timerProgressBar: true,
-        showConfirmButton: false,
-        icon: "error",
-        title: message || 'عملیات شـکست خورد'
-    });
+async function fillPageId(id) {
+    $("#CurrentPage").val(id);
+    $("#filter-search").trigger("submit");
 }
 
 async function showSuccessToasterSWAL(message, position = "bottom-end") {
@@ -260,9 +251,16 @@ async function showSuccessToasterSWAL(message, position = "bottom-end") {
     });
 }
 
-function FillPageId(id) {
-    $("#CurrentPage").val(id);
-    $("#filter-search").trigger("submit");
+async function showErrorToasterSWAL(message, position = "bottom-end") {
+    await swal.fire({
+        timer: 2500,
+        toast: true,
+        position: position,
+        timerProgressBar: true,
+        showConfirmButton: false,
+        icon: "error",
+        title: message || 'عملیات شـکست خورد'
+    });
 }
 
 async function handleAJAXResponse(response, options) {

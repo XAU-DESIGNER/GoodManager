@@ -2,6 +2,7 @@
 @using GoodManager.Domain.DTOs.ViewModels.Accounting.Transactions
 @using GoodManager.Domain.Enums.Accounting
 @using GoodManager.Domain.Enums.Common
+@using GoodManager.Application.Convertors
 @model FilterAccountingTransactionViewModel
 
 <div class="card px-4 pb-5 sm:px-5">
@@ -25,7 +26,7 @@
                                 @item.TransactionCause.GetEnumName()
                             </p>
                             <p class="text-xs text-slate-400 line-clamp-1 dark:text-navy-200">
-                                Dec 21, 2021 - 08:05
+                                @item.CreatedDateOnUtc.ToFullPersianDate()
                             </p>
                         </div>
                     </div>
