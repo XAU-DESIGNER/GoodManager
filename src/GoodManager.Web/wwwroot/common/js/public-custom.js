@@ -356,3 +356,8 @@ async function hideLoading(selector) {
 
     element.waitMe("hide");
 }
+
+// common data
+function getAllYearMonthsName() {
+    return ["فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "ابان", "آذر", "دی", "بهمن", "اسفند"];
+}

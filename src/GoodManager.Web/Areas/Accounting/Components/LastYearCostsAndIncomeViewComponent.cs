@@ -5,11 +5,12 @@ using Microsoft.AspNetCore.Mvc;
 namespace GoodManager.Web.Areas.Accounting.Components;
 
 [ViewComponent]
-public class TransactionsChartOverviewViewComponent(IAccountingTransactionService accountingTransactionService) : ViewComponent
+public class LastYearCostsAndIncomeViewComponent (IAccountingTransactionReportService accountingTransactionReportService): ViewComponent
 {
     public async Task<IViewComponentResult> InvokeAsync()
     {
-        var result = await accountingTransactionService.GetOverViewForChartAsync(HttpContext.User.GetUserId());
+        int userId = HttpContext.User.GetUserId();
+        var result = await accountingTransactionReportService.GetLastYearCostsAndIncomeAsync(userId);
 
         if (result.IsFailure) return View();
 

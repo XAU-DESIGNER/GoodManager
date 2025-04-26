@@ -2,8 +2,6 @@
 using GoodManager.Domain.Common;
 using GoodManager.Domain.Common.Filter;
 using GoodManager.Domain.DTOs.ViewModels.Accounting.Transactions;
-using GoodManager.Domain.DTOs.ViewModels.LangCenter.Words;
-using GoodManager.Domain.Enums.Accounting;
 using GoodManager.Domain.Enums.Common;
 using GoodManager.Domain.Interfaces.Accounting;
 using GoodManager.Domain.Models.Accounting;
@@ -80,19 +78,6 @@ public class AccountingTransactionService(IAccountingTransactionRepository accou
         await accountingTransactionRepository.SaveChangesAsync();
 
         return Result.Success();
-    }
-
-    public async Task<Result<TransactionChartOverviewViewModel>> GetOverViewForChartAsync(int userId)
-    {
-        var latestTransaction = await accountingTransactionRepository.FirstOrDefaultAsync(x => x.UserId == userId && !x.IsDeleted,
-            orderByDesc: x => x.Id);
-
-        var result = new TransactionChartOverviewViewModel()
-        {
-            //Balance = latestTransaction?.Balance ?? 0
-        };
-
-        return Result.Success(value: result);
     }
 
     public async Task<Result<UpdateAccountingTransactionViewModel>> GetByIdForUpdateAsync(int id)

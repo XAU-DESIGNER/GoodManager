@@ -9,6 +9,5 @@ public interface IAccountingTransactionService
     Task<Result> CreateAsync(CreateAccountingTransactionViewModel model);
     Task<Result> UpdateAsync(UpdateAccountingTransactionViewModel model);
     Task<Result<UpdateAccountingTransactionViewModel>> GetByIdForUpdateAsync(int id);
-    Task<Result<TransactionChartOverviewViewModel>> GetOverViewForChartAsync(int userId);
     Task<Result> DeleteAsync(int id);
 }

@@ -25,6 +25,7 @@ public static class DependencyInjection
         services.AddScoped<IWordService, WordService>();
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IAccountingTransactionService, AccountingTransactionService>();
+        services.AddScoped<IAccountingTransactionReportService, AccountingTransactionReportService>();
 
         #endregion
     }

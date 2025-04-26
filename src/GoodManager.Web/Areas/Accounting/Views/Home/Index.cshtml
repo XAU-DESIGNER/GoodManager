@@ -3,6 +3,10 @@
     ViewData["Title"] = "مالی و حسابداری";
 }
 
+@section FooterReferences {
+    <script src="~/common/js/accounting/home.js"></script>
+}
+
 <div class="mt-4 grid grid-cols-12 gap-4 transition-all duration-[.25s] sm:mt-5 sm:gap-5 lg:mt-6 lg:gap-6">
     @* <div class="col-span-12 lg:col-span-8"> *@
     @*     @await Component.InvokeAsync("TransactionsChartOverview") *@
@@ -124,19 +128,7 @@
         @await Component.InvokeAsync("LastTransactions", new FilterAccountingTransactionViewModel())
     </div>
 
-    @*     <div class="col-span-12 lg:col-span-8">
-        <div class="card px-4 pb-5 sm:px-5">
-            <div class="my-3 flex h-8 items-center justify-between">
-                <h2 class="font-medium tracking-wide text-slate-700 dark:text-navy-100">
-                    ورودی ها و خروجی های این هفته
-                </h2>
-                <a asp-action="Analysis" asp-controller="Accounting" class="border-b border-dotted border-current pb-0.5 text-xs-plus font-medium text-primary outline-hidden transition-colors duration-300 hover:text-primary/70 focus:text-primary/70 dark:text-accent-light dark:hover:text-accent-light/70 dark:focus:text-accent-light/70">
-                    مـشاهده هـمه
-                </a>
-            </div>
-            <div class="space-y-4">
-                <div x-init="$nextTick(() => { $el._x_chart = new ApexCharts($el,pages.charts.demoChart2); $el._x_chart.render() });"></div>
-            </div>
-        </div>
-    </div> *@
+    <div class="col-span-12 lg:col-span-8">
+        @await Component.InvokeAsync("LastYearCostsAndIncome")
+    </div>
 </div>
