@@ -15,7 +15,8 @@ public enum AccountingTransactionCause
     [Display(Name = "فارکـس")] Forex,
     [Display(Name = "کارمندی")] Employment,
     [Display(Name = "امـور خانـوادگی")]Family,
-    [Display(Name = "غذای ناسالم")]JunkFood
+    [Display(Name = "غذای ناسالم")]JunkFood,
+    [Display(Name = "خرید بسته اینترنت")] BuyInternetService
 }
 
 public enum AccountingTransactionWay

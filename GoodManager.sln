@@ -25,11 +25,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution items", "solution 
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
 		Directory.Packages.props = Directory.Packages.props
-		LICENSE = LICENSE
-		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{F7978A80-CEE8-41D6-8344-202548BE3DA5}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
