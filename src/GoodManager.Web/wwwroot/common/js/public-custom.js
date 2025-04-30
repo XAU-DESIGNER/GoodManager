@@ -89,22 +89,26 @@ $('[addForm]').on('reset', async function (e) {
     $('.formBtns').hide();
 })
 
-$('[addForm]').on('submit', async function (e) {
+$(document).on('submit', '[addForm]', async function (e) {
     e.preventDefault();
 
     let form = $(this);
     let formData = new FormData(form[0]);
+
     const url = $(this).attr('action');
-    const type = $(this).attr('method');
-    const successCallBack = window[$(this).attr('afterSuccess')];
-    const errorCallBack = window[$(this).attr('afterError')];
+    const method = $(this).attr('method');
+
+    const successCallBack = $(this).attr('afterSuccess');
+    const errorCallBack = $(this).attr('afterError');
+    const isSwal = $(this).attr('isSwal') || false;
+
     const formId = $(this).attr('id');
     const showSuccessAlert = $(this).attr('showSuccessAlert') || true;
-    const isSwalModal = $(this).attr('isSwalModal') || false;
+    const showErrorAlert = $(this).attr('showErrorAlert') || true;
 
     await $.ajax({
         url: url,
-        type: type || 'POST',
+        type: method || 'POST',
         data: formData,
         cache: false,
         contentType: false,
@@ -128,10 +132,16 @@ $('[addForm]').on('submit', async function (e) {
         error: async (result) => {
             await hideLoading(`#${formId}`);
 
-            if (isSwalModal) {
-                await Swal.showValidationMessage(result.responseText);
-            } else {
-                await showErrorToasterSWAL(result.responseText);
+            if (errorCallBack) {
+                await errorCallBack();
+            }
+
+            if (showErrorAlert === true) {
+                if (isSwal === true) {
+                    SWAL.showValidationMessage(result.responseText);
+                } else {
+                    await showErrorToasterSWAL(result.responseText);
+                }
             }
         }
     });
@@ -141,7 +151,7 @@ $('[addForm] input').on('input', async function (e) {
     $('.formBtns').fadeIn();
 })
 
-$('[editForm]').on('submit', async function (e) {
+$(document).on('submit', '[editForm]', async function (e) {
     e.preventDefault();
 
     let form = $(this);
@@ -152,6 +162,9 @@ $('[editForm]').on('submit', async function (e) {
     const errorCallBack = $(this).attr('afterError');
     const formId = $(this).attr('id');
     const isSwal = $(this).attr('isSwal') || false;
+
+    const showSuccessAlert = $(this).attr('showSuccessAlert') || true;
+    const showErrorAlert = $(this).attr('showErrorAlert') || true;
 
     await $.ajax({
         url: url,
@@ -170,7 +183,9 @@ $('[editForm]').on('submit', async function (e) {
 
             if (successCallBack) {
                 await successCallBack();
-            } else {
+            }
+
+            if (showSuccessAlert === true) {
                 await showSuccessToasterSWAL(message);
             }
 
@@ -179,13 +194,17 @@ $('[editForm]').on('submit', async function (e) {
 
             if (errorCallBack) {
                 await errorCallBack();
-            } else {
-                console.log(result.responseText);
             }
 
-            if (isSwal) {
-                await Swal.showValidationMessage(result.responseText);
+            if (showErrorAlert === true) {
+                if (isSwal === true) {
+                    SWAL.showValidationMessage(result.responseText);
+                } else {
+                    await showErrorToasterSWAL(result.responseText);
+                }
             }
+
+            console.log(result.responseText);
         }
     });
 })
@@ -229,7 +248,7 @@ $(document).on('change', '#currentStep', async function () {
 
             elementIcon.addClass('step-header mask is-hexagon bg-slate-200 text-slate-500 dark:bg-navy-500 dark:text-navy-100');
         }
-    } )
+    })
 })
 
 // common functions

@@ -35,7 +35,7 @@ public class TransactionController(IAccountingTransactionService accountingTrans
     [HttpPost, ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(CreateAccountingTransactionViewModel model)
     {
-        if (!ModelState.IsValid) return BadRequest(ErrorMessages.NullValue);
+        if (!ModelState.IsValid || model.Amount == 0) return BadRequest(ErrorMessages.NullValue);
 
         model.UserId = User.GetUserId();
         var result = await accountingTransactionService.CreateAsync(model);

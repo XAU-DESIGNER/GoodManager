@@ -1,11 +1,13 @@
 ﻿using GoodManager.Domain.Enums.Accounting;
 using GoodManager.Domain.Enums.Common;
+using System.ComponentModel.DataAnnotations;
 
 namespace GoodManager.Domain.DTOs.ViewModels.Accounting.Transactions;
 
 public class CreateAccountingTransactionViewModel
 {
     public int UserId { get; set; }
+
     public decimal Amount { get; set; }
     public AccountingTransactionType TransactionType { get; set; }
     public AccountingTransactionCause TransactionCause { get; set; }
