@@ -46,7 +46,7 @@
                 <select asp-for="CurrencyType" asp-items="Html.GetEnumSelectList<CurrencyType>()" class="form-select rounded-r-lg border border-slate-300 bg-white px-3 py-2 pl-9 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent">
                 </select>
                 <input priceInput hiddenInputId="hidden_amount" class="form-input w-full dir-ltr rounded-l-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent" placeholder="مـبلغ" type="text">
-                <input type="hidden"  id="hidden_amount" asp-for="Amount" />
+                <input hidden id="hidden_amount" asp-for="Amount" />
             </div>
             <span asp-validation-for="Amount"></span>
         </div>

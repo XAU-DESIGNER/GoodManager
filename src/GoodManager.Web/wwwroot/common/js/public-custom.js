@@ -85,7 +85,7 @@ $('[ajax-filter-form]').on('submit', async function (e) {
     });
 })
 
-$('[addForm]').on('reset', async function (e) {
+$(document).on('reset', '[addForm]', async function (e) {
     $('.formBtns').hide();
 })
 
@@ -123,6 +123,8 @@ $(document).on('submit', '[addForm]', async function (e) {
 
             if (successCallBack && typeof successCallBack === 'function') {
                 await successCallBack();
+            } else{
+                $(this).trigger('reset');
             }
 
             if (showSuccessAlert === true) {
