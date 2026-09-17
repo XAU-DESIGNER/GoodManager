@@ -6,7 +6,7 @@ GoodManager was a personal project I worked on during my free time when I was st
 
 The project is no longer actively maintained, but I decided to keep the backend source code available as a reference for anyone who wants to explore it.
 
-The frontend assets have been removed due to copyright restrictions.
+### **The frontend assets have been removed due to copyright restrictions.**
 
 You can explore the backend code to study its structure and get a better understanding of software architecture and how the different parts of a backend application fit together.
 
